@@ -34,7 +34,7 @@ export function Billboard3D({ position = [0, 0, 0], rotation = [0, 0, 0], scale 
     <group ref={group} position={position} scale={scale}>
       {/* Billboard board */}
       <RoundedBox args={[4, 2.2, 0.1]} radius={0.05} position={[0, 1.5, 0]}>
-        <meshStandardMaterial color="#00B5E2" metalness={0.1} roughness={0.4} />
+        <meshStandardMaterial color="#00B5E2" metalness={0.1} roughness={0.4} emissive="#00B5E2" emissiveIntensity={0.25} />
       </RoundedBox>
 
       {/* Inner panel (cream) */}
@@ -59,7 +59,6 @@ export function Billboard3D({ position = [0, 0, 0], rotation = [0, 0, 0], scale 
         position={[0, 1.7, 0.08]}
         fontSize={0.22}
         color="#00B5E2"
-        font="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjQ.woff2"
         anchorX="center"
         anchorY="middle"
         maxWidth={3}
@@ -78,7 +77,6 @@ export function Billboard3D({ position = [0, 0, 0], rotation = [0, 0, 0], scale 
         position={[0, 1.25, 0.08]}
         fontSize={0.09}
         color="#3A3A3A"
-        font="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjQ.woff2"
         anchorX="center"
         anchorY="middle"
       >
@@ -90,7 +88,6 @@ export function Billboard3D({ position = [0, 0, 0], rotation = [0, 0, 0], scale 
         position={[0, 1.0, 0.08]}
         fontSize={0.07}
         color="#3D85A7"
-        font="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjQ.woff2"
         anchorX="center"
         anchorY="middle"
       >

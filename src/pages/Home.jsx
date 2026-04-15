@@ -18,12 +18,12 @@ function HeroSection() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-cream-100 via-cream-200 to-primary-50">
       {/* 3D Background with parallax */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <Scene3D camera={{ position: [0, 0, 10], fov: 50 }} mouseIntensity={1.5}>
-          <Billboard3D position={[-3.5, 0.5, -2]} scale={0.65} rotation={[0, 0.3, 0]} />
-          <Billboard3D position={[3.5, -0.3, -3]} scale={0.5} rotation={[0, -0.25, 0]} />
+        <Scene3D camera={{ position: [0, 0, 10], fov: 75 }} mouseIntensity={1.5}>
+          <Billboard3D position={[-7, -1.5, -2]} scale={0.8} rotation={[0, 0.45, 0]} />
+          <Billboard3D position={[7, -1.5, -3]} scale={0.7} rotation={[0, -0.35, 0]} />
           <FloatingParticles count={80} color="#00B5E2" />
           <GlowingSphere position={[-4, 2, -4]} scale={1.8} color="#00B5E2" />
           <GlowingSphere position={[4, -1.5, -5]} scale={1.4} color="#3D85A7" />
@@ -32,7 +32,7 @@ function HeroSection() {
       </motion.div>
 
       {/* Gradient overlays for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-cream-200/70 via-cream-200/30 to-cream-200/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-cream-200/20 via-transparent to-cream-200/40" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-full blur-[128px]" />
 
       <FloatingElements />
