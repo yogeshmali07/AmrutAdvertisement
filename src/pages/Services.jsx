@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { SectionHeading, GlassCard, Button } from '../components/ui';
+import { SectionHeading, GlassCard, Button, TiltCard, ParallaxLayer, FloatingElements } from '../components/ui';
 import { ServiceIcon } from '../components/ui/ServiceIcon';
 import { services, siteConfig } from '../config';
 
@@ -43,14 +43,14 @@ function PageHero() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="text-sm font-semibold tracking-widest uppercase text-gold-400 mb-4 block">
+          <span className="text-sm font-semibold tracking-widest uppercase text-primary-500 mb-4 block">
             Our Services
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-charcoal-800 mb-6">
             Comprehensive{' '}
             <span className="gradient-text">Advertising Solutions</span>
           </h1>
-          <p className="text-dark-400 text-lg leading-relaxed">
+          <p className="text-charcoal-500 text-lg leading-relaxed">
             From traditional outdoor advertising to cutting-edge digital
             campaigns, we offer a complete suite of services designed to amplify
             your brand presence and drive business growth.
@@ -63,27 +63,23 @@ function PageHero() {
 
 function ServicesList() {
   return (
-    <section className="section-padding">
-      <div className="container-custom">
+    <section className="section-padding relative">
+      <FloatingElements />
+      <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
-            <GlassCard key={service.id} className="group">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-              >
+            <TiltCard key={service.id} intensity={10}>
+              <div className="glass rounded-2xl p-6 md:p-8 h-full group">
                 <div className="w-14 h-14 rounded-xl bg-primary-600/10 flex items-center justify-center mb-5 group-hover:bg-primary-600/20 transition-colors duration-300">
                   <ServiceIcon name={service.icon} className="w-7 h-7" />
                 </div>
-                <h3 className="text-white font-semibold text-xl mb-3 group-hover:text-primary-300 transition-colors">
+                <h3 className="text-charcoal-800 font-semibold text-xl mb-3 group-hover:text-primary-600 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-dark-400 text-sm leading-relaxed mb-4">
+                <p className="text-charcoal-500 text-sm leading-relaxed mb-4">
                   {service.description}
                 </p>
-                <div className="flex items-center text-primary-400 text-sm font-medium group-hover:text-primary-300 transition-colors">
+                <div className="flex items-center text-primary-600 text-sm font-medium group-hover:text-primary-700 transition-colors">
                   <span>Learn More</span>
                   <motion.span
                     className="ml-2 inline-block"
@@ -93,8 +89,8 @@ function ServicesList() {
                     →
                   </motion.span>
                 </div>
-              </motion.div>
-            </GlassCard>
+              </div>
+            </TiltCard>
           ))}
         </div>
       </div>
@@ -114,31 +110,32 @@ function ProcessSection() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {process.map((item, i) => (
-            <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="relative"
-            >
-              <div className="glass rounded-2xl p-6 h-full">
-                <span className="text-4xl font-display font-bold gradient-text opacity-30">
-                  {item.step}
-                </span>
-                <h3 className="text-white font-semibold text-lg mt-2 mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-dark-400 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-              {i < process.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-3 text-dark-600">
-                  →
+            <ParallaxLayer key={item.step} speed={0.05 + i * 0.03}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="relative"
+              >
+                <div className="glass rounded-2xl p-6 h-full">
+                  <span className="text-4xl font-display font-bold gradient-text opacity-30">
+                    {item.step}
+                  </span>
+                  <h3 className="text-charcoal-800 font-semibold text-lg mt-2 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-charcoal-500 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-              )}
-            </motion.div>
+                {i < process.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-3 text-charcoal-400">
+                    →
+                  </div>
+                )}
+              </motion.div>
+            </ParallaxLayer>
           ))}
         </div>
       </div>
@@ -154,25 +151,31 @@ function CTASection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-strong rounded-3xl p-8 md:p-16 text-center relative overflow-hidden"
+          className="relative rounded-3xl p-8 md:p-16 text-center overflow-hidden bg-gradient-to-br from-primary-500 to-accent-600"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-gold-500/10" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-white/10 rounded-full blur-[80px]" />
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
               Need a Custom{' '}
-              <span className="gradient-text-gold">Advertising Solution?</span>
+              <span className="text-white/90">Advertising Solution?</span>
             </h2>
-            <p className="text-dark-400 max-w-xl mx-auto mb-8">
+            <p className="text-white/70 max-w-xl mx-auto mb-8">
               Every business is unique. Let&rsquo;s discuss your specific needs
               and create a campaign that delivers results.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="gold">
-                <Link to="/contact">Get a Free Quote</Link>
-              </Button>
-              <Button variant="secondary">
-                <a href={`tel:${siteConfig.phone}`}>Call Us</a>
-              </Button>
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-8 py-3 text-sm font-medium text-primary-600 bg-white rounded-lg hover:bg-cream-100 transition-all shadow-lg shadow-black/10"
+              >
+                Get a Free Quote
+              </Link>
+              <a
+                href={`tel:${siteConfig.phone}`}
+                className="inline-flex items-center px-8 py-3 text-sm font-medium text-white border border-white/30 rounded-lg hover:bg-white/10 transition-all"
+              >
+                Call Us
+              </a>
             </div>
           </div>
         </motion.div>

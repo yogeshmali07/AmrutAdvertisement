@@ -1,38 +1,56 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Scene3D, FloatingParticles, GlowingSphere, FloatingRings } from '../components/three';
-import { Button, SectionHeading, GlassCard } from '../components/ui';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Scene3D, FloatingParticles, GlowingSphere, FloatingRings, Billboard3D } from '../components/three';
+import { Button, SectionHeading, GlassCard, TiltCard, ParallaxLayer, FloatingElements } from '../components/ui';
 import { ServiceIcon } from '../components/ui/ServiceIcon';
 import { siteConfig, services, stats, testimonials } from '../config';
 import logo from '../assets/images/logo.png';
 
 function HeroSection() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* 3D Background */}
-      <Scene3D camera={{ position: [0, 0, 10], fov: 50 }}>
-        <FloatingParticles count={100} color="#5c7cfa" />
-        <GlowingSphere position={[-3, 1, -2]} scale={2} color="#5c7cfa" />
-        <GlowingSphere position={[3, -1, -3]} scale={1.5} color="#fbbf24" />
-        <FloatingRings count={4} color="#5c7cfa" />
-      </Scene3D>
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* 3D Background with parallax */}
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <Scene3D camera={{ position: [0, 0, 10], fov: 50 }} mouseIntensity={1.5}>
+          <Billboard3D position={[-3.5, 0.5, -2]} scale={0.65} rotation={[0, 0.3, 0]} />
+          <Billboard3D position={[3.5, -0.3, -3]} scale={0.5} rotation={[0, -0.25, 0]} />
+          <FloatingParticles count={80} color="#00B5E2" />
+          <GlowingSphere position={[-4, 2, -4]} scale={1.8} color="#00B5E2" />
+          <GlowingSphere position={[4, -1.5, -5]} scale={1.4} color="#3D85A7" />
+          <FloatingRings count={3} color="#00B5E2" />
+        </Scene3D>
+      </motion.div>
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-950/80 via-dark-950/40 to-dark-950" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-600/10 rounded-full blur-[128px]" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gold-500/5 rounded-full blur-[100px]" />
+      {/* Gradient overlays for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cream-200/70 via-cream-200/30 to-cream-200/80" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-full blur-[128px]" />
 
-      {/* Content */}
-      <div className="relative z-10 container-custom px-4 sm:px-6 lg:px-8 text-center">
+      <FloatingElements />
+
+      {/* Content with scroll parallax */}
+      <motion.div
+        style={{ y: textY, opacity: textOpacity }}
+        className="relative z-10 container-custom px-4 sm:px-6 lg:px-8 text-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-          <span className="text-sm text-dark-300">
-            Trusted Advertising Partner {siteConfig.tagline}
+          <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+          <span className="text-sm text-charcoal-600">
+            Trusted Advertising Partner — {siteConfig.tagline}
           </span>
         </motion.div>
 
@@ -40,7 +58,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-charcoal-800 leading-[1.1] mb-6"
         >
           Crafting{' '}
           <span className="gradient-text">Powerful Brands</span>
@@ -53,7 +71,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base md:text-lg text-dark-400 max-w-2xl mx-auto leading-relaxed mb-10"
+          className="text-base md:text-lg text-charcoal-500 max-w-2xl mx-auto leading-relaxed mb-10"
         >
           From eye-catching hoardings to strategic digital campaigns, we help
           businesses amplify their visibility and build lasting brand presence
@@ -84,12 +102,12 @@ function HeroSection() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-2"
+            className="w-6 h-10 rounded-full border border-charcoal-300 flex items-start justify-center p-2"
           >
-            <div className="w-1 h-2 rounded-full bg-white/60" />
+            <div className="w-1 h-2 rounded-full bg-charcoal-400" />
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -97,7 +115,8 @@ function HeroSection() {
 function StatsSection() {
   return (
     <section className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 via-transparent to-gold-500/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-500/5 via-transparent to-accent-500/5" />
+      <FloatingElements />
       <div className="container-custom px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
@@ -112,7 +131,7 @@ function StatsSection() {
               <div className="text-3xl md:text-4xl lg:text-5xl font-display font-bold gradient-text mb-2">
                 {stat.value}
               </div>
-              <div className="text-dark-400 text-sm uppercase tracking-wider">
+              <div className="text-charcoal-500 text-sm uppercase tracking-wider">
                 {stat.label}
               </div>
             </motion.div>
@@ -126,7 +145,8 @@ function StatsSection() {
 function ServicesPreview() {
   return (
     <section className="section-padding relative">
-      <div className="container-custom">
+      <FloatingElements />
+      <div className="container-custom relative z-10">
         <SectionHeading
           subtitle="What We Do"
           title="Services Built to Amplify Your Brand"
@@ -134,22 +154,17 @@ function ServicesPreview() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.slice(0, 6).map((service, i) => (
-            <GlassCard key={service.id}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
+            <TiltCard key={service.id} intensity={10}>
+              <div className="glass rounded-2xl p-6 md:p-8 h-full">
                 <ServiceIcon name={service.icon} className="w-10 h-10 mb-4" />
-                <h3 className="text-white font-semibold text-lg mb-2">
+                <h3 className="text-charcoal-800 font-semibold text-lg mb-2">
                   {service.title}
                 </h3>
-                <p className="text-dark-400 text-sm leading-relaxed">
+                <p className="text-charcoal-500 text-sm leading-relaxed">
                   {service.description}
                 </p>
-              </motion.div>
-            </GlassCard>
+              </div>
+            </TiltCard>
           ))}
         </div>
         <div className="text-center mt-12">
@@ -174,20 +189,20 @@ function AboutPreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span className="text-sm font-semibold tracking-widest uppercase text-gold-400 mb-4 block">
+            <span className="text-sm font-semibold tracking-widest uppercase text-primary-500 mb-4 block">
               Our Story
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-charcoal-800 mb-6">
               Over a Decade of{' '}
               <span className="gradient-text">Creative Excellence</span>
             </h2>
-            <p className="text-dark-400 leading-relaxed mb-6">
+            <p className="text-charcoal-500 leading-relaxed mb-6">
               Since 2013, Amrut Advertising has been the trusted advertising
               partner for businesses across Washim and Maharashtra. We combine
               local market understanding with creative innovation to deliver
               campaigns that truly resonate.
             </p>
-            <p className="text-dark-400 leading-relaxed mb-8">
+            <p className="text-charcoal-500 leading-relaxed mb-8">
               From a small shop to becoming the go-to advertising agency in the
               region, our journey has been driven by a commitment to quality,
               reliability, and results that matter.
@@ -204,18 +219,20 @@ function AboutPreview() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-gold-500/10" />
-              <img
-                src={logo}
-                alt={siteConfig.name}
-                className="absolute inset-0 w-full h-full object-contain p-8"
-              />
-            </div>
+            <ParallaxLayer speed={0.12}>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10" />
+                <img
+                  src={logo}
+                  alt={siteConfig.name}
+                  className="absolute inset-0 w-full h-full object-contain p-8"
+                />
+              </div>
+            </ParallaxLayer>
 
             {/* Floating decorative element */}
-            <div className="absolute -top-4 -right-4 w-32 h-32 bg-primary-600/10 rounded-2xl blur-xl" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-gold-500/10 rounded-2xl blur-xl" />
+            <div className="absolute -top-4 -right-4 w-32 h-32 bg-primary-500/10 rounded-2xl blur-xl" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-accent-500/10 rounded-2xl blur-xl" />
           </motion.div>
         </div>
       </div>
@@ -225,8 +242,9 @@ function AboutPreview() {
 
 function TestimonialsSection() {
   return (
-    <section className="section-padding">
-      <div className="container-custom">
+    <section className="section-padding relative">
+      <FloatingElements />
+      <div className="container-custom relative z-10">
         <SectionHeading
           subtitle="Testimonials"
           title="What Our Clients Say"
@@ -234,29 +252,29 @@ function TestimonialsSection() {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <GlassCard key={i}>
-              <div className="flex flex-col h-full">
+            <TiltCard key={i} intensity={8}>
+              <div className="glass rounded-2xl p-6 md:p-8 h-full flex flex-col">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
-                    <span key={j} className="text-gold-400 text-sm">
+                    <span key={j} className="text-accent-500 text-sm">
                       ★
                     </span>
                   ))}
                 </div>
-                <p className="text-dark-300 text-sm leading-relaxed mb-6 flex-1">
+                <p className="text-charcoal-600 text-sm leading-relaxed mb-6 flex-1">
                   &ldquo;{t.text}&rdquo;
                 </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-gold-400 flex items-center justify-center text-dark-950 font-bold text-sm">
+                <div className="flex items-center gap-3 pt-4 border-t border-cream-300">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm">
                     {t.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-white font-medium text-sm">{t.name}</p>
-                    <p className="text-dark-500 text-xs">{t.role}</p>
+                    <p className="text-charcoal-800 font-medium text-sm">{t.name}</p>
+                    <p className="text-charcoal-400 text-xs">{t.role}</p>
                   </div>
                 </div>
               </div>
-            </GlassCard>
+            </TiltCard>
           ))}
         </div>
       </div>
@@ -272,27 +290,32 @@ function CTASection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative glass-strong rounded-3xl p-8 md:p-16 text-center overflow-hidden"
+          className="relative rounded-3xl p-8 md:p-16 text-center overflow-hidden bg-gradient-to-br from-primary-500 to-accent-600"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-gold-500/10" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary-600/10 rounded-full blur-[80px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]" />
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
               Ready to{' '}
-              <span className="gradient-text-gold">Elevate Your Brand?</span>
+              <span className="text-white/90">Elevate Your Brand?</span>
             </h2>
-            <p className="text-dark-400 max-w-xl mx-auto mb-8 leading-relaxed">
+            <p className="text-white/70 max-w-xl mx-auto mb-8 leading-relaxed">
               Let&rsquo;s create something extraordinary together. Get in touch
               with us today and discover how we can transform your business
               visibility.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="gold">
-                <Link to="/contact">Start a Project</Link>
-              </Button>
-              <Button variant="secondary">
-                <a href={`tel:${siteConfig.phone}`}>Call Us Now</a>
-              </Button>
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-8 py-3 text-sm font-medium text-primary-600 bg-white rounded-lg hover:bg-cream-100 transition-all shadow-lg shadow-black/10"
+              >
+                Start a Project
+              </Link>
+              <a
+                href={`tel:${siteConfig.phone}`}
+                className="inline-flex items-center px-8 py-3 text-sm font-medium text-white border border-white/30 rounded-lg hover:bg-white/10 transition-all"
+              >
+                Call Us Now
+              </a>
             </div>
           </div>
         </motion.div>

@@ -26,7 +26,7 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'glass-strong shadow-lg shadow-dark-950/50 py-3'
+          ? 'glass-strong shadow-lg shadow-charcoal-200/50 py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -38,10 +38,10 @@ export function Navbar() {
             className="w-10 h-10 rounded-lg object-contain transition-transform group-hover:scale-110"
           />
           <div className="hidden sm:block">
-            <span className="block text-white font-semibold text-lg leading-tight tracking-tight">
+            <span className="block text-charcoal-800 font-semibold text-lg leading-tight tracking-tight">
               {siteConfig.name}
             </span>
-            <span className="block text-[10px] text-gold-400 uppercase tracking-[0.2em] font-medium">
+            <span className="block text-[10px] text-primary-500 uppercase tracking-[0.2em] font-medium">
               {siteConfig.tagline}
             </span>
           </div>
@@ -55,15 +55,15 @@ export function Navbar() {
                 to={link.path}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
                   location.pathname === link.path
-                    ? 'text-white'
-                    : 'text-dark-400 hover:text-white'
+                    ? 'text-primary-600'
+                    : 'text-charcoal-600 hover:text-primary-600'
                 }`}
               >
                 {link.label}
                 {location.pathname === link.path && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute inset-0 bg-white/10 rounded-lg -z-10"
+                    className="absolute inset-0 bg-primary-50 rounded-lg -z-10"
                     transition={{
                       type: 'spring',
                       stiffness: 380,
@@ -79,7 +79,7 @@ export function Navbar() {
         <div className="hidden md:block">
           <Link
             to="/contact"
-            className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-dark-950 bg-gradient-to-r from-gold-400 to-gold-500 rounded-lg hover:from-gold-500 hover:to-gold-600 transition-all duration-300 shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40"
+            className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-600 rounded-lg hover:from-primary-600 hover:to-accent-700 transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40"
           >
             Get in Touch
           </Link>
@@ -96,18 +96,18 @@ export function Navbar() {
               rotate: isMobileOpen ? 45 : 0,
               y: isMobileOpen ? 8 : 0,
             }}
-            className="block w-6 h-0.5 bg-white"
+            className="block w-6 h-0.5 bg-charcoal-700"
           />
           <motion.span
             animate={{ opacity: isMobileOpen ? 0 : 1 }}
-            className="block w-6 h-0.5 bg-white"
+            className="block w-6 h-0.5 bg-charcoal-700"
           />
           <motion.span
             animate={{
               rotate: isMobileOpen ? -45 : 0,
               y: isMobileOpen ? -8 : 0,
             }}
-            className="block w-6 h-0.5 bg-white"
+            className="block w-6 h-0.5 bg-charcoal-700"
           />
         </button>
       </nav>
@@ -120,7 +120,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass-strong border-t border-white/5 overflow-hidden"
+            className="md:hidden glass-strong border-t border-cream-300 overflow-hidden"
           >
             <div className="container-custom px-4 py-6 flex flex-col gap-2">
               {navLinks.map((link) => (
@@ -129,8 +129,8 @@ export function Navbar() {
                   to={link.path}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                     location.pathname === link.path
-                      ? 'bg-white/10 text-white'
-                      : 'text-dark-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-primary-50 text-primary-600'
+                      : 'text-charcoal-600 hover:text-primary-600 hover:bg-primary-50/50'
                   }`}
                 >
                   {link.label}
@@ -138,7 +138,7 @@ export function Navbar() {
               ))}
               <Link
                 to="/contact"
-                className="mt-2 inline-flex items-center justify-center px-5 py-3 text-sm font-medium text-dark-950 bg-gradient-to-r from-gold-400 to-gold-500 rounded-lg"
+                className="mt-2 inline-flex items-center justify-center px-5 py-3 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-600 rounded-lg"
               >
                 Get in Touch
               </Link>

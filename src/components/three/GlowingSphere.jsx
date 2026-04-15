@@ -17,7 +17,7 @@ export function GlowingSphere({ position = [0, 0, 0], scale = 1, color = '#5c7cf
       <MeshDistortMaterial
         color={color}
         transparent
-        opacity={0.15}
+        opacity={0.1}
         distort={0.4}
         speed={1.5}
         roughness={0.2}

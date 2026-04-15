@@ -30,7 +30,7 @@ export function FloatingRings({ count = 5, color = '#5c7cfa' }) {
           <meshBasicMaterial
             color={color}
             transparent
-            opacity={0.2 - i * 0.03}
+            opacity={0.15 - i * 0.02}
             side={THREE.DoubleSide}
           />
         </mesh>

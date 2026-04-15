@@ -24,7 +24,7 @@ export function Loader({ onComplete }) {
     <motion.div
       exit={{ opacity: 0, scale: 1.1 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[200] bg-dark-950 flex flex-col items-center justify-center"
+      className="fixed inset-0 z-[200] bg-cream-200 flex flex-col items-center justify-center"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -40,12 +40,12 @@ export function Loader({ onComplete }) {
         <h1 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-2">
           Amrut Advertising
         </h1>
-        <p className="text-dark-400 text-sm tracking-widest uppercase mb-8">
+        <p className="text-charcoal-400 text-sm tracking-widest uppercase mb-8">
           Since 2013
         </p>
-        <div className="w-48 h-[2px] bg-dark-800 rounded-full overflow-hidden mx-auto">
+        <div className="w-48 h-[2px] bg-cream-300 rounded-full overflow-hidden mx-auto">
           <motion.div
-            className="h-full bg-gradient-to-r from-primary-500 to-gold-400 rounded-full"
+            className="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"
             style={{ width: `${Math.min(progress, 100)}%` }}
             transition={{ duration: 0.2 }}
           />

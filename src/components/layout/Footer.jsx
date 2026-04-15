@@ -7,9 +7,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-dark-950 border-t border-white/5">
+    <footer className="relative bg-white border-t border-cream-300">
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
 
       <div className="container-custom section-padding pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
@@ -22,15 +22,15 @@ export function Footer() {
                 className="w-10 h-10 rounded-lg object-contain"
               />
               <div>
-                <span className="block text-white font-semibold text-lg leading-tight">
+                <span className="block text-charcoal-800 font-semibold text-lg leading-tight">
                   {siteConfig.name}
                 </span>
-                <span className="block text-[10px] text-gold-400 uppercase tracking-[0.2em] font-medium">
+                <span className="block text-[10px] text-primary-500 uppercase tracking-[0.2em] font-medium">
                   {siteConfig.tagline}
                 </span>
               </div>
             </Link>
-            <p className="text-dark-400 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-charcoal-500 text-sm leading-relaxed mb-6 max-w-xs">
               {siteConfig.description}
             </p>
             <div className="flex gap-3">
@@ -38,7 +38,7 @@ export function Footer() {
                 <a
                   key={platform}
                   href={url}
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-dark-400 hover:text-white transition-all duration-300 text-xs uppercase font-bold"
+                  className="w-9 h-9 rounded-lg bg-cream-200 hover:bg-cream-300 flex items-center justify-center text-charcoal-600 hover:text-primary-600 transition-all duration-300 text-xs uppercase font-bold"
                   aria-label={platform}
                 >
                   {platform.charAt(0).toUpperCase()}
@@ -49,7 +49,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-charcoal-800 font-semibold mb-4 text-sm uppercase tracking-wider">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -57,7 +57,7 @@ export function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-dark-400 hover:text-white text-sm transition-colors duration-300"
+                    className="text-charcoal-500 hover:text-primary-600 text-sm transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-charcoal-800 font-semibold mb-4 text-sm uppercase tracking-wider">
               Services
             </h4>
             <ul className="space-y-3">
@@ -76,7 +76,7 @@ export function Footer() {
                 <li key={svc.id}>
                   <Link
                     to="/services"
-                    className="text-dark-400 hover:text-white text-sm transition-colors duration-300"
+                    className="text-charcoal-500 hover:text-primary-600 text-sm transition-colors duration-300"
                   >
                     {svc.title}
                   </Link>
@@ -87,12 +87,12 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-charcoal-800 font-semibold mb-4 text-sm uppercase tracking-wider">
               Contact
             </h4>
-            <ul className="space-y-4 text-sm text-dark-400">
+            <ul className="space-y-4 text-sm text-charcoal-500">
               <li>
-                <p className="text-dark-300 font-medium mb-1">Address</p>
+                <p className="text-charcoal-700 font-medium mb-1">Address</p>
                 <p>
                   {siteConfig.address.line1}, {siteConfig.address.line2},{' '}
                   {siteConfig.address.city}, {siteConfig.address.state} -{' '}
@@ -100,19 +100,19 @@ export function Footer() {
                 </p>
               </li>
               <li>
-                <p className="text-dark-300 font-medium mb-1">Phone</p>
+                <p className="text-charcoal-700 font-medium mb-1">Phone</p>
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-primary-600 transition-colors"
                 >
                   {siteConfig.phone}
                 </a>
               </li>
               <li>
-                <p className="text-dark-300 font-medium mb-1">Email</p>
+                <p className="text-charcoal-700 font-medium mb-1">Email</p>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-primary-600 transition-colors"
                 >
                   {siteConfig.email}
                 </a>
@@ -122,15 +122,15 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-dark-500 text-sm">
+        <div className="border-t border-cream-300 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-charcoal-400 text-sm">
             © {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex gap-6 text-dark-500 text-sm">
-            <a href="#" className="hover:text-white transition-colors">
+          <div className="flex gap-6 text-charcoal-400 text-sm">
+            <a href="#" className="hover:text-primary-600 transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#" className="hover:text-primary-600 transition-colors">
               Terms of Service
             </a>
           </div>

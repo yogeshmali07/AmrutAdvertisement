@@ -9,7 +9,7 @@ export function GlassCard({ children, className = '', hover = true, ...props }) 
       transition={{ duration: 0.6 }}
       whileHover={hover ? { y: -5, scale: 1.01 } : {}}
       className={`glass rounded-2xl p-6 md:p-8 transition-all duration-300 ${
-        hover ? 'hover:shadow-lg hover:shadow-primary-600/10 hover:border-primary-500/20' : ''
+        hover ? 'hover:shadow-xl hover:shadow-primary-500/8 hover:border-primary-200/40' : ''
       } ${className}`}
       {...props}
     >

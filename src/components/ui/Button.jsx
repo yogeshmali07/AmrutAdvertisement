@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 
 const variants = {
   primary:
-    'bg-primary-600 hover:bg-primary-700 text-white shadow-lg shadow-primary-600/25 hover:shadow-primary-600/40',
+    'bg-primary-500 hover:bg-primary-600 text-white shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40',
   secondary:
-    'bg-transparent border border-white/20 hover:border-white/40 text-white hover:bg-white/5',
-  gold: 'bg-gold-500 hover:bg-gold-600 text-dark-950 shadow-lg shadow-gold-500/25 hover:shadow-gold-500/40',
+    'bg-transparent border border-charcoal-200 hover:border-primary-500 text-charcoal-600 hover:text-primary-600 hover:bg-primary-50',
+  accent: 'bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40',
+  gold: 'bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40',
 };
 
 export function Button({

@@ -20,7 +20,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-block text-sm font-semibold tracking-widest uppercase text-gold-400 mb-4"
+          className="inline-block text-sm font-semibold tracking-widest uppercase text-primary-500 mb-4"
         >
           {subtitle}
         </motion.span>
@@ -31,7 +31,7 @@ export function SectionHeading({
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className={`text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-tight mb-4 ${
-          light ? 'text-dark-900' : 'text-white'
+          light ? 'text-white' : 'text-charcoal-700'
         }`}
       >
         {title}
@@ -43,7 +43,7 @@ export function SectionHeading({
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className={`text-base md:text-lg leading-relaxed ${
-            light ? 'text-dark-500' : 'text-dark-400'
+            light ? 'text-white/70' : 'text-charcoal-400'
           }`}
         >
           {description}

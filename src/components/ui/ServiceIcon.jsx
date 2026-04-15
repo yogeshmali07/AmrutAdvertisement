@@ -110,7 +110,7 @@ const icons = {
 
 export function ServiceIcon({ name, className = '' }) {
   return (
-    <div className={`text-primary-400 ${className}`}>
+    <div className={`text-primary-500 ${className}`}>
       {icons[name] || icons.brand}
     </div>
   );

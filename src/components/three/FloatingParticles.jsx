@@ -55,9 +55,9 @@ export function FloatingParticles({ count = 80, color = '#5c7cfa' }) {
         size={0.05}
         color={color}
         transparent
-        opacity={0.6}
+        opacity={0.4}
         sizeAttenuation
-        blending={THREE.AdditiveBlending}
+        blending={THREE.NormalBlending}
         depthWrite={false}
       />
     </points>

@@ -1,6 +1,9 @@
 export { Button } from './Button';
 export { SectionHeading } from './SectionHeading';
 export { GlassCard } from './GlassCard';
+export { TiltCard } from './TiltCard';
+export { ParallaxSection, ParallaxLayer } from './ParallaxSection';
+export { FloatingElements } from './FloatingElements';
 export { ScrollProgress } from './ScrollProgress';
 export { Modal } from './Modal';
 export { Loader } from './Loader';

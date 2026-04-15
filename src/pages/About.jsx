@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { SectionHeading, GlassCard } from '../components/ui';
+import { SectionHeading, GlassCard, TiltCard, ParallaxLayer, FloatingElements } from '../components/ui';
 import { siteConfig, stats } from '../config';
 import logo from '../assets/images/logo.png';
 
@@ -75,10 +75,10 @@ function PageHero() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="text-sm font-semibold tracking-widest uppercase text-gold-400 mb-4 block">
+          <span className="text-sm font-semibold tracking-widest uppercase text-primary-500 mb-4 block">
             About Us
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-charcoal-800 mb-6">
             Your Trusted{' '}
             <span className="gradient-text">Advertising Partner</span>
           </h1>
@@ -109,7 +109,7 @@ function StorySection() {
               title="From Local Roots to Regional Impact"
               align="left"
             />
-            <div className="space-y-6 text-dark-400 leading-relaxed">
+            <div className="space-y-6 text-charcoal-500 leading-relaxed">
               <p>
                 Founded in 2013 in the heart of Washim, Amrut Advertising began
                 with a simple mission: to provide businesses with advertising
@@ -138,22 +138,24 @@ function StorySection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden glass">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-gold-500/10" />
-              <img
-                src={logo}
-                alt={siteConfig.name}
-                className="absolute inset-0 w-full h-full object-contain p-10"
-              />
-              <div className="absolute bottom-6 left-0 right-0 text-center">
-                <div className="text-4xl font-display font-bold gradient-text">
-                  11+
+            <ParallaxLayer speed={0.12}>
+              <div className="relative aspect-square rounded-2xl overflow-hidden glass">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-gold-500/10" />
+                <img
+                  src={logo}
+                  alt={siteConfig.name}
+                  className="absolute inset-0 w-full h-full object-contain p-10"
+                />
+                <div className="absolute bottom-6 left-0 right-0 text-center">
+                  <div className="text-4xl font-display font-bold gradient-text">
+                    11+
+                  </div>
+                  <p className="text-charcoal-600 text-sm">
+                    Years of Creative Excellence
+                  </p>
                 </div>
-                <p className="text-dark-300 text-sm">
-                  Years of Creative Excellence
-                </p>
               </div>
-            </div>
+            </ParallaxLayer>
           </motion.div>
         </div>
       </div>
@@ -165,42 +167,47 @@ function MissionVision() {
   return (
     <section className="section-padding relative">
       <div className="absolute inset-0 bg-gradient-to-r from-primary-600/5 via-transparent to-gold-500/5" />
+      <FloatingElements />
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <GlassCard hover={false}>
-            <span className="text-gold-400 text-sm font-semibold tracking-widest uppercase mb-4 block">
-              Our Mission
-            </span>
-            <h3 className="text-2xl font-display font-bold text-white mb-4">
-              Empowering Businesses Through{' '}
-              <span className="gradient-text">Strategic Visibility</span>
-            </h3>
-            <p className="text-dark-400 leading-relaxed">
-              To provide innovative, high-quality advertising solutions that help
-              businesses of all sizes grow their brand presence, reach new
-              audiences, and achieve measurable results. We are committed to
-              combining creative excellence with strategic thinking to deliver
-              campaigns that truly make an impact.
-            </p>
-          </GlassCard>
+          <TiltCard intensity={8}>
+            <div className="glass rounded-2xl p-8">
+              <span className="text-primary-500 text-sm font-semibold tracking-widest uppercase mb-4 block">
+                Our Mission
+              </span>
+              <h3 className="text-2xl font-display font-bold text-charcoal-800 mb-4">
+                Empowering Businesses Through{' '}
+                <span className="gradient-text">Strategic Visibility</span>
+              </h3>
+              <p className="text-charcoal-500 leading-relaxed">
+                To provide innovative, high-quality advertising solutions that help
+                businesses of all sizes grow their brand presence, reach new
+                audiences, and achieve measurable results. We are committed to
+                combining creative excellence with strategic thinking to deliver
+                campaigns that truly make an impact.
+              </p>
+            </div>
+          </TiltCard>
 
-          <GlassCard hover={false}>
-            <span className="text-gold-400 text-sm font-semibold tracking-widest uppercase mb-4 block">
-              Our Vision
-            </span>
-            <h3 className="text-2xl font-display font-bold text-white mb-4">
-              The Leading{' '}
-              <span className="gradient-text">Advertising Force</span> in
-              Maharashtra
-            </h3>
-            <p className="text-dark-400 leading-relaxed">
-              To become the most trusted and innovative advertising agency in
-              Maharashtra, known for transforming businesses through powerful
-              branding, cutting-edge technology, and campaigns that inspire. We
-              envision a future where every business, regardless of size, has
-              access to world-class advertising.
-            </p>
-          </GlassCard>
+          <TiltCard intensity={8}>
+            <div className="glass rounded-2xl p-8">
+              <span className="text-primary-500 text-sm font-semibold tracking-widest uppercase mb-4 block">
+                Our Vision
+              </span>
+              <h3 className="text-2xl font-display font-bold text-charcoal-800 mb-4">
+                The Leading{' '}
+                <span className="gradient-text">Advertising Force</span> in
+                Maharashtra
+              </h3>
+              <p className="text-charcoal-500 leading-relaxed">
+                To become the most trusted and innovative advertising agency in
+                Maharashtra, known for transforming businesses through powerful
+                branding, cutting-edge technology, and campaigns that inspire. We
+                envision a future where every business, regardless of size, has
+                access to world-class advertising.
+              </p>
+            </div>
+          </TiltCard>
         </div>
       </div>
     </section>
@@ -233,7 +240,7 @@ function Timeline() {
               }`}
             >
               {/* Dot */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary-500 ring-4 ring-dark-950 z-10" />
+              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary-500 ring-4 ring-cream-200 z-10" />
 
               <div
                 className={`ml-12 md:ml-0 md:w-1/2 ${
@@ -242,13 +249,13 @@ function Timeline() {
                     : 'md:pl-12 md:text-left'
                 }`}
               >
-                <span className="text-gold-400 font-display font-bold text-xl">
+                <span className="text-primary-600 font-display font-bold text-xl">
                   {item.year}
                 </span>
-                <h3 className="text-white font-semibold text-lg mt-1 mb-2">
+                <h3 className="text-charcoal-800 font-semibold text-lg mt-1 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-dark-400 text-sm leading-relaxed">
+                <p className="text-charcoal-500 text-sm leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -272,27 +279,27 @@ function ValuesSection() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {values.map((v, i) => (
-            <GlassCard key={v.title}>
+            <TiltCard key={v.title} intensity={8}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex gap-4"
+                className="glass rounded-2xl p-6 flex gap-4"
               >
                 <span className="text-primary-400 text-lg mt-1 flex-shrink-0">
                   {v.icon}
                 </span>
                 <div>
-                  <h3 className="text-white font-semibold text-lg mb-2">
+                  <h3 className="text-charcoal-800 font-semibold text-lg mb-2">
                     {v.title}
                   </h3>
-                  <p className="text-dark-400 text-sm leading-relaxed">
+                  <p className="text-charcoal-500 text-sm leading-relaxed">
                     {v.description}
                   </p>
                 </div>
               </motion.div>
-            </GlassCard>
+            </TiltCard>
           ))}
         </div>
       </div>
@@ -318,7 +325,7 @@ function StatsBar() {
               <div className="text-3xl md:text-4xl font-display font-bold gradient-text mb-2">
                 {stat.value}
               </div>
-              <div className="text-dark-400 text-sm uppercase tracking-wider">
+              <div className="text-charcoal-500 text-sm uppercase tracking-wider">
                 {stat.label}
               </div>
             </motion.div>
