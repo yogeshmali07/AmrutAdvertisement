@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Scene3D, FloatingParticles, GlowingSphere, FloatingRings, Billboard3D } from '../components/three';
-import { Button, SectionHeading, GlassCard, TiltCard, ParallaxLayer, FloatingElements } from '../components/ui';
+import { Scene3D, Billboard3D } from '../components/three';
+import { Button, SectionHeading, TiltCard, ParallaxLayer } from '../components/ui';
 import { ServiceIcon } from '../components/ui/ServiceIcon';
 import { siteConfig, services, stats, testimonials } from '../config';
 import logo from '../assets/images/logo.png';
@@ -13,40 +13,41 @@ function HeroSection() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-cream-100 via-cream-200 to-primary-50">
-      {/* 3D Background with parallax */}
-      <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <Scene3D camera={{ position: [0, 0, 10], fov: 75 }} mouseIntensity={1.5}>
-          <Billboard3D position={[-7, -1.5, -2]} scale={0.8} rotation={[0, 0.45, 0]} />
-          <Billboard3D position={[7, -1.5, -3]} scale={0.7} rotation={[0, -0.35, 0]} />
-          <FloatingParticles count={400} color="#00B5E2" />
-          <GlowingSphere position={[-4, 2, -4]} scale={1.8} color="#00B5E2" />
-          <GlowingSphere position={[4, -1.5, -5]} scale={1.4} color="#3D85A7" />
-          <FloatingRings count={3} color="#00B5E2" />
+    <section ref={heroRef} className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-cream-50 to-cream-100">
+
+      {/* 3D Billboards — fullscreen background layer, receives pointer events */}
+      <div className="absolute inset-0 z-10">
+        <Scene3D camera={{ position: [0, 1.5, 14], fov: 60 }} mouseIntensity={0.15}>
+          <Billboard3D
+            position={[-9, -0.5, 0]}
+            scale={0.72}
+            label="OUTDOOR HOARDINGS"
+            tagline="Maximum Visibility"
+          />
+          <Billboard3D
+            position={[9, -0.5, 0]}
+            scale={0.72}
+            label="DIGITAL MARKETING"
+            tagline="Campaigns That Convert"
+          />
         </Scene3D>
-      </motion.div>
+      </div>
 
-      {/* Gradient overlays for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-cream-200/20 via-transparent to-cream-200/40" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-full blur-[128px]" />
-
-      <FloatingElements />
-
-      {/* Content with scroll parallax */}
+      {/* Hero text — centered, pointer-events-none so mouse passes to Canvas behind */}
       <motion.div
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 container-custom px-4 sm:px-6 lg:px-8 text-center"
+        className="relative z-20 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8 pointer-events-none"
       >
+        <div className="text-center max-w-2xl mx-auto pt-20">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
         >
           <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
           <span className="text-sm text-charcoal-600">
@@ -55,10 +56,10 @@ function HeroSection() {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-charcoal-800 leading-[1.1] mb-6"
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-charcoal-800 leading-[1.1] mb-5"
         >
           Crafting{' '}
           <span className="gradient-text">Powerful Brands</span>
@@ -68,10 +69,10 @@ function HeroSection() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base md:text-lg text-charcoal-500 max-w-2xl mx-auto leading-relaxed mb-10"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-base md:text-lg text-charcoal-500 max-w-2xl mx-auto leading-relaxed mb-8"
         >
           From eye-catching hoardings to strategic digital campaigns, we help
           businesses amplify their visibility and build lasting brand presence
@@ -79,34 +80,19 @@ function HeroSection() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.45 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button variant="gold" className="w-full sm:w-auto">
+          <Button variant="gold" className="w-full sm:w-auto pointer-events-auto">
             <Link to="/portfolio">Explore Our Work</Link>
           </Button>
-          <Button variant="secondary" className="w-full sm:w-auto">
+          <Button variant="secondary" className="w-full sm:w-auto pointer-events-auto">
             <Link to="/services">Our Services</Link>
           </Button>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border border-charcoal-300 flex items-start justify-center p-2"
-          >
-            <div className="w-1 h-2 rounded-full bg-charcoal-400" />
-          </motion.div>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
@@ -116,7 +102,6 @@ function StatsSection() {
   return (
     <section className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-primary-500/5 via-transparent to-accent-500/5" />
-      <FloatingElements />
       <div className="container-custom px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
@@ -145,7 +130,6 @@ function StatsSection() {
 function ServicesPreview() {
   return (
     <section className="section-padding relative">
-      <FloatingElements />
       <div className="container-custom relative z-10">
         <SectionHeading
           subtitle="What We Do"
@@ -154,8 +138,16 @@ function ServicesPreview() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.slice(0, 6).map((service, i) => (
-            <TiltCard key={service.id} intensity={10}>
-              <div className="glass rounded-2xl p-6 md:p-8 h-full">
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              className="will-change-transform"
+            >
+              <div className="glass rounded-2xl p-6 md:p-8 h-full hover:shadow-lg hover:shadow-primary-500/8 transition-shadow duration-300">
                 <ServiceIcon name={service.icon} className="w-10 h-10 mb-4" />
                 <h3 className="text-charcoal-800 font-semibold text-lg mb-2">
                   {service.title}
@@ -164,7 +156,7 @@ function ServicesPreview() {
                   {service.description}
                 </p>
               </div>
-            </TiltCard>
+            </motion.div>
           ))}
         </div>
         <div className="text-center mt-12">
@@ -219,20 +211,17 @@ function AboutPreview() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <ParallaxLayer speed={0.12}>
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10" />
-                <img
-                  src={logo}
-                  alt={siteConfig.name}
-                  className="absolute inset-0 w-full h-full object-contain p-8"
-                />
+            <ParallaxLayer speed={0.08}>
+              <div className="relative rounded-2xl overflow-hidden glass p-1">
+                <div className="rounded-xl overflow-hidden bg-gradient-to-br from-cream-100 to-white">
+                  <img
+                    src={logo}
+                    alt={siteConfig.name}
+                    className="w-full h-auto object-contain p-10"
+                  />
+                </div>
               </div>
             </ParallaxLayer>
-
-            {/* Floating decorative element */}
-            <div className="absolute -top-4 -right-4 w-32 h-32 bg-primary-500/10 rounded-2xl blur-xl" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-accent-500/10 rounded-2xl blur-xl" />
           </motion.div>
         </div>
       </div>
@@ -243,7 +232,6 @@ function AboutPreview() {
 function TestimonialsSection() {
   return (
     <section className="section-padding relative">
-      <FloatingElements />
       <div className="container-custom relative z-10">
         <SectionHeading
           subtitle="Testimonials"

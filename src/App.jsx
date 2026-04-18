@@ -9,6 +9,7 @@ const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Terms = lazy(() => import('./pages/Terms'));
 
 function PageLoader() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/terms" element={<Terms />} />
             </Route>
           </Routes>
         </Suspense>

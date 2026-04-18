@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { SectionHeading, GlassCard, Button, TiltCard, ParallaxLayer, FloatingElements } from '../components/ui';
+import { SectionHeading, Button, TiltCard, FloatingElements } from '../components/ui';
 import { ServiceIcon } from '../components/ui/ServiceIcon';
 import { services, siteConfig } from '../config';
 
@@ -70,10 +70,10 @@ function ServicesList() {
           {services.map((service, i) => (
             <TiltCard key={service.id} intensity={10}>
               <div className="glass rounded-2xl p-6 md:p-8 h-full group">
-                <div className="w-14 h-14 rounded-xl bg-primary-600/10 flex items-center justify-center mb-5 group-hover:bg-primary-600/20 transition-colors duration-300">
+                <div className="w-14 h-14 rounded-xl bg-primary-600/10 flex items-center justify-center mb-5">
                   <ServiceIcon name={service.icon} className="w-7 h-7" />
                 </div>
-                <h3 className="text-charcoal-800 font-semibold text-xl mb-3 group-hover:text-primary-600 transition-colors">
+                <h3 className="text-charcoal-800 font-semibold text-xl mb-3">
                   {service.title}
                 </h3>
                 <p className="text-charcoal-500 text-sm leading-relaxed mb-4">
@@ -100,7 +100,7 @@ function ServicesList() {
 
 function ProcessSection() {
   return (
-    <section className="section-padding relative">
+    <section className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-600/5 to-transparent" />
       <div className="container-custom relative z-10">
         <SectionHeading
@@ -110,32 +110,58 @@ function ProcessSection() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {process.map((item, i) => (
-            <ParallaxLayer key={item.step} speed={0.05 + i * 0.03}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="relative"
-              >
-                <div className="glass rounded-2xl p-6 h-full">
-                  <span className="text-4xl font-display font-bold gradient-text opacity-30">
-                    {item.step}
-                  </span>
-                  <h3 className="text-charcoal-800 font-semibold text-lg mt-2 mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-charcoal-500 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
+            <motion.div
+              key={item.step}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="relative group"
+            >
+              <div className="glass rounded-2xl p-6 h-full overflow-hidden relative">
+                {/* Animated floating number background */}
+                <div className="absolute -right-2 -top-4 overflow-hidden h-24 w-20 pointer-events-none">
+                  <motion.div
+                    animate={{ y: ['0%', '-50%'] }}
+                    transition={{
+                      duration: 4 + i * 0.5,
+                      repeat: Infinity,
+                      ease: 'linear',
+                    }}
+                    className="flex flex-col items-center"
+                  >
+                    {[...Array(8)].map((_, j) => (
+                      <span
+                        key={j}
+                        className="text-6xl font-display font-bold text-primary-500/[0.06] leading-none block py-1"
+                      >
+                        {item.step}
+                      </span>
+                    ))}
+                  </motion.div>
                 </div>
-                {i < process.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 text-charcoal-400">
-                    →
+
+                {/* Step number with accent bar */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm">
+                    {item.step}
                   </div>
-                )}
-              </motion.div>
-            </ParallaxLayer>
+                  <div className="h-px flex-1 bg-gradient-to-r from-primary-500/20 to-transparent" />
+                </div>
+
+                <h3 className="text-charcoal-800 font-semibold text-lg mb-3 relative z-10">
+                  {item.title}
+                </h3>
+                <p className="text-charcoal-500 text-sm leading-relaxed relative z-10">
+                  {item.description}
+                </p>
+              </div>
+              {i < process.length - 1 && (
+                <div className="hidden lg:block absolute top-1/2 -right-3 text-primary-400 text-lg">
+                  →
+                </div>
+              )}
+            </motion.div>
           ))}
         </div>
       </div>

@@ -38,7 +38,7 @@ function PageHero() {
   );
 }
 
-function PortfolioCard({ item, onClick }) {
+function PortfolioCard({ item, onClick, floatDelay = 0 }) {
   const ref = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -55,14 +55,23 @@ function PortfolioCard({ item, onClick }) {
   };
 
   return (
-    <div
-      ref={ref}
-      onClick={onClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="group cursor-pointer glass rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary-500/10 transition-all duration-300 will-change-transform"
-      style={{ transformStyle: 'preserve-3d', transition: 'transform 0.2s ease-out, box-shadow 0.3s' }}
+    <motion.div
+      animate={{ y: [0, -10, 0] }}
+      transition={{
+        duration: 3.2 + floatDelay * 0.3,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        delay: floatDelay,
+      }}
     >
+      <div
+        ref={ref}
+        onClick={onClick}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="group cursor-pointer glass rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary-500/10 transition-all duration-300 will-change-transform"
+        style={{ transformStyle: 'preserve-3d', transition: 'transform 0.2s ease-out, box-shadow 0.3s' }}
+      >
       <div className="aspect-[4/3] relative overflow-hidden bg-cream-100">
         <img
           src={item.image}
@@ -88,7 +97,8 @@ function PortfolioCard({ item, onClick }) {
           {item.title}
         </h3>
       </div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -146,7 +156,7 @@ function PortfolioGrid() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
-                <PortfolioCard item={item} onClick={() => setSelectedItem(item)} />
+                <PortfolioCard item={item} onClick={() => setSelectedItem(item)} floatDelay={i * 0.45} />
               </motion.div>
             ))}
           </AnimatePresence>
