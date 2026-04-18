@@ -43,6 +43,26 @@ function HeroSection() {
         className="relative z-20 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8 pointer-events-none"
       >
         <div className="text-center max-w-2xl mx-auto pt-20">
+        {/* Amrut Logo/Name Section */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="mb-8"
+        >
+          {/* <img
+            src={logo}
+            alt={siteConfig.name}
+            className="h-16 md:h-20 mx-auto mb-4 drop-shadow-lg"
+          /> */}
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-charcoal-800 mb-1">
+            {siteConfig.name}
+          </h1>
+          <p className="text-primary-600 font-semibold text-sm md:text-base tracking-widest uppercase">
+            {siteConfig.tagline}
+          </p>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,6 +112,32 @@ function HeroSection() {
             <Link to="/services">Our Services</Link>
           </Button>
         </motion.div>
+
+        {/* Mobile Billboard — visible only on small screens where 3D billboards are off-screen */}
+        <div className="md:hidden mt-10 w-full max-w-xs mx-auto pointer-events-auto">
+          <div className="rounded-xl overflow-hidden border-[3px] border-charcoal-700 shadow-2xl">
+            <div className="bg-gradient-to-r from-primary-600 to-primary-500 px-4 py-2 flex items-center justify-between">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+              </div>
+              <span className="text-white font-bold text-xs tracking-widest uppercase">OUTDOOR HOARDINGS</span>
+              <div className="flex gap-1">
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+                <div className="w-2 h-2 rounded-full bg-white/40" />
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-cream-50 to-cream-100 px-6 py-8 text-center">
+              <div className="text-charcoal-700 font-display font-bold text-2xl mb-1">AMRUT</div>
+              <div className="text-primary-600 font-bold text-sm tracking-wider mb-3">ADVERTISING</div>
+              <p className="text-charcoal-500 text-xs">Maximum Visibility • High Impact</p>
+            </div>
+            <div className="bg-charcoal-700 flex justify-center gap-6 py-2">
+              <div className="w-3 h-5 bg-charcoal-500 rounded-sm" />
+              <div className="w-3 h-5 bg-charcoal-500 rounded-sm" />
+            </div>
+          </div>
+        </div>
         </div>
       </motion.div>
     </section>
@@ -212,12 +258,12 @@ function AboutPreview() {
             className="relative"
           >
             <ParallaxLayer speed={0.08}>
-              <div className="relative rounded-2xl overflow-hidden glass p-1">
-                <div className="rounded-xl overflow-hidden bg-gradient-to-br from-cream-100 to-white">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-cream-200">
+                <div className="rounded-xl overflow-hidden bg-gradient-to-br from-cream-50 to-white">
                   <img
                     src={logo}
                     alt={siteConfig.name}
-                    className="w-full h-auto object-contain p-10"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </div>

@@ -35,7 +35,7 @@ export function Navbar() {
           <img
             src={logo}
             alt={siteConfig.name}
-            className="w-10 h-10 rounded-lg object-contain transition-transform group-hover:scale-110"
+            className="w-16 h-16 rounded-lg object-contain transition-transform group-hover:scale-110"
           />
           <div className="hidden sm:block">
             <span className="block text-charcoal-800 font-semibold text-lg leading-tight tracking-tight">
@@ -78,7 +78,7 @@ export function Navbar() {
 
         <div className="hidden md:block">
           <Link
-            to="/contact"
+            to="/contact#contact-form"
             className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-600 rounded-lg hover:from-primary-600 hover:to-accent-700 transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40"
           >
             Get in Touch
@@ -137,7 +137,7 @@ export function Navbar() {
                 </Link>
               ))}
               <Link
-                to="/contact"
+                to="/contact#contact-form"
                 className="mt-2 inline-flex items-center justify-center px-5 py-3 text-sm font-medium text-white bg-gradient-to-r from-primary-500 to-accent-600 rounded-lg"
               >
                 Get in Touch

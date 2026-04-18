@@ -139,20 +139,37 @@ function StorySection() {
             transition={{ duration: 0.7 }}
           >
             <ParallaxLayer speed={0.12}>
-              <div className="relative aspect-square rounded-2xl overflow-hidden glass">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-gold-500/10" />
-                <img
-                  src={logo}
-                  alt={siteConfig.name}
-                  className="absolute inset-0 w-full h-full object-contain p-10"
-                />
-                <div className="absolute bottom-6 left-0 right-0 text-center">
-                  <div className="text-4xl font-display font-bold gradient-text">
-                    11+
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-primary-100">
+                {/* Gradient background */}
+                <div className="bg-gradient-to-br from-primary-600 via-primary-500 to-accent-600 px-8 pt-10 pb-0 text-center">
+                  {/* Top label */}
+                  <span className="inline-block text-white/70 text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+                    Trusted Since 2013
+                  </span>
+                  {/* Logo on gradient */}
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={logo}
+                      alt={siteConfig.name}
+                      className="w-56 h-56 object-contain drop-shadow-2xl"
+                    />
                   </div>
-                  <p className="text-charcoal-600 text-sm">
-                    Years of Creative Excellence
-                  </p>
+                </div>
+
+                {/* White bottom info strip */}
+                <div className="bg-white px-8 py-6 grid grid-cols-3 divide-x divide-cream-200">
+                  <div className="text-center px-4">
+                    <div className="text-2xl font-display font-bold gradient-text">11+</div>
+                    <p className="text-charcoal-500 text-xs mt-0.5">Years Active</p>
+                  </div>
+                  <div className="text-center px-4">
+                    <div className="text-2xl font-display font-bold gradient-text">500+</div>
+                    <p className="text-charcoal-500 text-xs mt-0.5">Projects Done</p>
+                  </div>
+                  <div className="text-center px-4">
+                    <div className="text-2xl font-display font-bold gradient-text">100%</div>
+                    <p className="text-charcoal-500 text-xs mt-0.5">Satisfaction</p>
+                  </div>
                 </div>
               </div>
             </ParallaxLayer>
