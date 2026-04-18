@@ -24,7 +24,7 @@ function HeroSection() {
         <Scene3D camera={{ position: [0, 0, 10], fov: 75 }} mouseIntensity={1.5}>
           <Billboard3D position={[-7, -1.5, -2]} scale={0.8} rotation={[0, 0.45, 0]} />
           <Billboard3D position={[7, -1.5, -3]} scale={0.7} rotation={[0, -0.35, 0]} />
-          <FloatingParticles count={80} color="#00B5E2" />
+          <FloatingParticles count={400} color="#00B5E2" />
           <GlowingSphere position={[-4, 2, -4]} scale={1.8} color="#00B5E2" />
           <GlowingSphere position={[4, -1.5, -5]} scale={1.4} color="#3D85A7" />
           <FloatingRings count={3} color="#00B5E2" />

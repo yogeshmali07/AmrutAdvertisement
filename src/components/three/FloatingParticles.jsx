@@ -5,6 +5,7 @@ import * as THREE from 'three';
 export function FloatingParticles({ count = 80, color = '#5c7cfa' }) {
   const mesh = useRef();
 
+   
   const particles = useMemo(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
